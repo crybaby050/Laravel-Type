@@ -4,13 +4,13 @@ declare(strict_types=1);
 /**
  * Configuration de connexion à la base de données.
  *
- * Ce fichier ne fait QUE retourner un tableau : il est volontairement
- * "bête" pour rester facile à surcharger (variables d'environnement,
- * fichier .env, etc.) sans toucher au reste de l'application.
+ * Les valeurs proviennent du fichier .env (chargé dans
+ * bootstrap/autoload.php via Core\Env::load()). Le second argument
+ * de getenv() sert de valeur par défaut si la variable est absente.
  */
 return [
-    'host'     => 'localhost',
-    'dbname'   => 'atelier17',
-    'user'     => 'root',
-    'password' => '',
+    'host'     => getenv('DB_HOST') ?: 'localhost',
+    'dbname'   => getenv('DB_DATABASE') ?: '',
+    'user'     => getenv('DB_USERNAME') ?: 'root',
+    'password' => getenv('DB_PASSWORD') ?: '',
 ];
